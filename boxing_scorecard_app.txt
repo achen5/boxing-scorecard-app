@@ -21,6 +21,9 @@ Fidda 🦃 🎄 — Today at 10:12 AM
 @theCalifornia1994 If you're using a framework chances are that a compilation process is already set up. You'd just need to define what you want to support. If you have no idea what I'm talking about, I'd recommend reading about NPM packages, package.json, WebPack & Babel
 
 	- http://127.0.0.1:5500/
+	- For GitHub, use lowercase with hyphens
+		- "lowercase-with-hyphens is the style I most often see on GitHub.*"
+		- https://alexfidelchen.github.io/boxing-scorecard-app/
 
 4/2/2021
 - Start time: 4:10, 2 hours and 30 minutes
