@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Boxing Scorecard App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="help-box-wrapper">
+            <div class="help-box">Help tips regarding the app will appear here. Input a fighter's name into each corner. The names can be up to 10 letters long.</div>
+        </div>
+        <main>
+            <h1>Boxing scorecard app</h1>
+            <div class="names">
+                <div class="corner-red"><input type="text" class="corner-name-red" maxlength="10" size="10" value="Red" data-corner="red"></div>
+                <div class="corner-blue"><input type="text" class="corner-name-blue" maxlengh="10" size="10" value="Blue" data-corner="blue"></div>
+            </div>
+            <section class="all-rounds">
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="1" data-corner="red">
+                    <div class="round-number">Round 1</div>
+                    <input class="round-score-box" type="number" data-round-number="1" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="2" data-corner="red">
+                    <div class="round-number">Round 2</div>
+                    <input class="round-score-box" type="number" data-round-number="2" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="3" data-corner="red">
+                    <div class="round-number">Round 3</div>
+                    <input class="round-score-box" type="number" data-round-number="3" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="4" data-corner="red">
+                    <div class="round-number">Round 4</div>
+                    <input class="round-score-box" type="number" data-round-number="4" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="5" data-corner="red">
+                    <div class="round-number">Round 5</div>
+                    <input class="round-score-box" type="number" data-round-number="5" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="6" data-corner="red">
+                    <div class="round-number">Round 6</div>
+                    <input class="round-score-box" type="number" data-round-number="6" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="7" data-corner="red">
+                    <div class="round-number">Round 7</div>
+                    <input class="round-score-box" type="number" data-round-number="7" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="8" data-corner="red">
+                    <div class="round-number">Round 8</div>
+                    <input class="round-score-box" type="number" data-round-number="8" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="9" data-corner="red">
+                    <div class="round-number">Round 9</div>
+                    <input class="round-score-box" type="number" data-round-number="9" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="10" data-corner="red">
+                    <div class="round-number">Round 10</div>
+                    <input class="round-score-box" type="number" data-round-number="10" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="11" data-corner="red">
+                    <div class="round-number">Round 11</div>
+                    <input class="round-score-box" type="number" data-round-number="11" data-corner="blue">
+                </div>
+                <div class="round">
+                    <input class="round-score-box" type="number" data-round-number="12" data-corner="red">
+                    <div class="round-number">Round 12</div>
+                    <input class="round-score-box" type="number" data-round-number="12" data-corner="blue">
+                </div>
+            </section>
+            <section class="winner">
+                <div><h2 class="result">Winner:</h2></div>
+            </section>
+            <section>
+                <button class=ko-button>This fight ended by knockout!</button>
+                <div class="modal-ko">
+                    <div class="modal-header">
+                      <div class="close">&times;</div>
+                    </div>
+                    <div class="modal-body">
+                      <div class="ko-winner">
+                          <p>Who won by KO?</p>
+                          <div class="radio-buttons">
+                            <label data-corner="red">Red</label><input type="radio" name="ko-winner" value="Red" data-corner="red" checked>
+                            <label data-corner="blue">Blue</label><input type="radio" name="ko-winner" value="Blue" data-corner="blue">
+                          </div>
+                      </div>
+                      <div class="ko-type">
+                        <p>What is a KO or TKO?*</p>
+                        <div class="radio-buttons">
+                            <label>KO<input type="radio" name="ko-type" value="KO" checked></label>
+                            <label>TKO<input type="radio" name="ko-type" value="TKO"></label>
+                          </div>
+                      </div>
+                      <p class="ko-helptip">*In most cases, a Technical Knockout (TKO) happens when the referee stops a fight while the losing boxer is still standing.</p>
+                      <button class="fight-result" type="submit">Update the fight result</button>
+                      <p class="error-radio-button">Please fill in one radio button for each question, then click the update button again.</p>
+                      <p class="ko-helptip">If you hit the update button with the wrong result, feel free adjust radio buttons and hit the update button again.</p>
+                    </div>
+                  </div>
+            </section>
+        </main>
+        <script src="ieDetection.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
