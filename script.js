@@ -1,17 +1,17 @@
 function getScoresFromBoxes(scoreBoxes) {
-    var scoresAll = [];
+    let scoresAll = [];
     for (let i = 0; i < scoreBoxes.length; i++) {
-        var score = Number(scoreBoxes[i].value); // null values are converted to 0.
+        let score = Number(scoreBoxes[i].value); // null values are converted to 0.
         scoresAll.push(score);
     }
     return scoresAll;
 }
 
 function autoFillScore(clickedElement) {
-    var currentCorner = clickedElement.getAttribute("data-corner");
-    var currentRound = clickedElement.getAttribute("data-round-number");
-    var checkOtherCorner = (currentCorner == "red") ? "blue" : "red" // If you filled in a score for the red corner, check the score for the blue corner, vice-versa.
-    var checkOtherCornerScore = document.querySelector(`.round-score-box[data-corner='${checkOtherCorner}'][data-round-number='${currentRound}']`);
+    const currentCorner = clickedElement.getAttribute("data-corner");
+    const currentRound = clickedElement.getAttribute("data-round-number");
+    const checkOtherCorner = (currentCorner == "red") ? "blue" : "red" // If you filled in a score for the red corner, check the score for the blue corner, vice-versa.
+    const checkOtherCornerScore = document.querySelector(`.round-score-box[data-corner='${checkOtherCorner}'][data-round-number='${currentRound}']`);
     console.log(currentCorner,currentRound,checkOtherCorner,checkOtherCornerScore);
     if (checkOtherCornerScore.value == "")  {
         checkOtherCornerScore.value = "9";
@@ -33,7 +33,7 @@ function calculateScoreCard(clickedElement) {
             //console.log(this);
             this.scoreBoxesAll = document.querySelectorAll(`.round-score-box[data-corner='${color}']`);
             for (let i = 0; i < this.scoreBoxesAll.length; i++) {
-                var score = Number(this.scoreBoxesAll[i].value); // null values are converted to 0.
+                let score = Number(this.scoreBoxesAll[i].value); // null values are converted to 0.
                 this.scoresAll.push(score);
                 this.totalScore = this.totalScore + score;
             }
@@ -43,23 +43,23 @@ function calculateScoreCard(clickedElement) {
     }
     Corner.prototype.compareScores = function(otherCorner) {
         if ((this.totalScore == 0) && (otherCorner.totalScore == 0)) return console.log("No scores inputed");
-        var isTheFightOver = ((this.scoresAll.indexOf(0) < 0) && (otherCorner.scoresAll.indexOf(0) < 0));
-        var ahead = "White"; //((this.totalScore > otherCorner.totalScore) ? this.color : otherCorner.color);
+        const isTheFightOver = ((this.scoresAll.indexOf(0) < 0) && (otherCorner.scoresAll.indexOf(0) < 0));
+        let ahead = "White"; //((this.totalScore > otherCorner.totalScore) ? this.color : otherCorner.color);
         if (this.totalScore > otherCorner.totalScore) ahead = this.fighterName;
         else if (this.totalScore < otherCorner.totalScore) ahead = otherCorner.fighterName;
         else if (this.totalScore == otherCorner.totalScore) ahead = "draw";
         if (ahead == "draw") {
-            var declare = ((isTheFightOver) ? "The fight is a draw! " : "The fight is even, ")
+            let declare = ((isTheFightOver) ? "The fight is a draw! " : "The fight is even, ")
             document.querySelector(".result").innerHTML = declare + this.totalScore + " - " + otherCorner.totalScore;
         } else {
-            var declare = ((isTheFightOver) ? "is the winner" : "is leading")
+            let declare = ((isTheFightOver) ? "is the winner" : "is leading")
             document.querySelector(".result").innerHTML = ahead + " " + declare + ", " + this.totalScore + " - " + otherCorner.totalScore;
             console.log(ahead + " is leading.");
         }
     }
     if (clickedElement.value == "10") autoFillScore(clickedElement);
-    var red = new Corner("red");
-    var blue = new Corner("blue");
+    const red = new Corner("red");
+    const blue = new Corner("blue");
     console.log(red,blue)
     red.compareScores(blue);
 }
@@ -90,7 +90,7 @@ function checkScoresFilled(clickedElement) {
 function calculateKORoundCorner(color) { 
     /* If a KO happens, its assumed to be the round after the last round. Red and blue corner
         are compared in case one is filled out but the other is not. */
-    var scoreBoxes = document.querySelectorAll(`.round-score-box[data-corner='${color}']`);
+    let scoreBoxes = document.querySelectorAll(`.round-score-box[data-corner='${color}']`);
     console.log(scoreBoxes);
     scoresAll = getScoresFromBoxes(scoreBoxes);
     console.log(scoresAll);
@@ -104,12 +104,12 @@ function calculateKORound() {
 
 function checkScoreRange(clickedElement) {
     /* This checks and ensures that the scorecard is between 0 and 10 */
-    var messages = {
+    const messages = {
         tooHigh: "The score you plugged in is too high. Changing the score to 10, which is the most points per round.",
         tooLow: "The score you plugged in is too low (below 0). Changing the score to 9. You can reenter as long as its above 0"
     }
-    var checkNumber = Number(clickedElement.value);
-    var helpBox = document.querySelector(".help-box");
+    const checkNumber = Number(clickedElement.value);
+    let helpBox = document.querySelector(".help-box");
     if (checkNumber > 10) {
         clickedElement.value = "10";
         helpBox.innerHTML = messages.tooHigh;
@@ -121,9 +121,9 @@ function checkScoreRange(clickedElement) {
 }
 
 function initialFighterName(color) {
-    var labelTarget = document.querySelector(`label[data-corner='${color}']`);
-    var inputTarget = document.querySelector(`[name='ko-winner'][data-corner='${color}']`);
-    var fighterName = document.querySelector(`.corner-name-${color}`).value;
+    let labelTarget = document.querySelector(`label[data-corner='${color}']`);
+    let inputTarget = document.querySelector(`[name='ko-winner'][data-corner='${color}']`);
+    const fighterName = document.querySelector(`.corner-name-${color}`).value;
     if (fighterName == "") {
         fighter.value = color.charAt(0).toUpperCase() + color.slice(1);
         document.querySelector(".help-box").innerHTML = "You cannot leave the fighter's name blank. Resetting the name to the fighter's corner color."
@@ -133,9 +133,9 @@ function initialFighterName(color) {
 }
 
 function updateFighterName(fighter) {
-      var color = fighter.getAttribute("data-corner");
-      var labelTarget = document.querySelector(`label[data-corner='${color}']`);
-      var inputTarget = document.querySelector(`[name='ko-winner'][data-corner='${color}']`);
+      const color = fighter.getAttribute("data-corner");
+      let labelTarget = document.querySelector(`label[data-corner='${color}']`);
+      let inputTarget = document.querySelector(`[name='ko-winner'][data-corner='${color}']`);
       if (fighter.value == "") {
           fighter.value = color.charAt(0).toUpperCase() + color.slice(1);
           document.querySelector(".help-box").innerHTML = "You cannot leave the fighter's name blank. Resetting the name to the fighter's corner color."
@@ -147,7 +147,7 @@ function updateFighterName(fighter) {
 
 
 function addScoreEvent() {
-    var allRounds = document.querySelectorAll('[class^="round-score-box"]');
+    const allRounds = document.querySelectorAll('[class^="round-score-box"]');
     allRounds.forEach(
         function(scoreBox) {
               scoreBox.addEventListener('change', (event) => {
@@ -162,10 +162,10 @@ function addScoreEvent() {
 }
 
 function addInputEvents() {
-    var modalKo = document.querySelector(".modal-ko");
-    var koButton = document.querySelector(".ko-button");
-    var koUpdateResult = document.querySelector(".fight-result");
-    var fighterNames = document.querySelectorAll("[class^='corner-name']");
+    let modalKo = document.querySelector(".modal-ko");
+    const koButton = document.querySelector(".ko-button");
+    let koUpdateResult = document.querySelector(".fight-result");
+    let fighterNames = document.querySelectorAll("[class^='corner-name']");
         koButton.addEventListener('click',function() {
             if (window.getComputedStyle(modalKo).display == "none") {
                 modalKo.style.display = "block";
@@ -173,18 +173,18 @@ function addInputEvents() {
             }
         });
 
-    var koCloseButton = document.querySelector(".close");
+    const koCloseButton = document.querySelector(".close");
     koCloseButton.addEventListener('click', function() {
         if (window.getComputedStyle(modalKo).display == "block") modalKo.style.display = "none";
     });
     koUpdateResult.addEventListener('click', function() {
         errorRadioButton = document.querySelector('.error-radio-button');
-        var radioButtonsChecked = (!!document.querySelector("input[name='ko-winner']:checked") && !!document.querySelector("input[name='ko-type']:checked"));
+        const radioButtonsChecked = (!!document.querySelector("input[name='ko-winner']:checked") && !!document.querySelector("input[name='ko-type']:checked"));
         if (radioButtonsChecked) {
             if (window.getComputedStyle(errorRadioButton).display == "block") errorRadioButton.style.display = "none";
-            var winner = document.querySelector('input[name="ko-winner"]:checked').value;
-            var koType = document.querySelector('input[name="ko-type"]:checked').value;
-            var result = document.querySelector(".result");
+            const winner = document.querySelector('input[name="ko-winner"]:checked').value;
+            const koType = document.querySelector('input[name="ko-type"]:checked').value;
+            const result = document.querySelector(".result");
             result.innerHTML = `${winner} won, ${koType}${calculateKORound()}`;
         } else {
             errorRadioButton.style.display = "block";
